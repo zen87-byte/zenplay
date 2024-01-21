@@ -16,6 +16,7 @@ import { GoDotFill } from "react-icons/go";
 import Comment from "../../components/Comment/Comment";
 import { getIdFromUrl } from "../../utils/getId";
 import { detailsType, getDetails } from "../../utils/getDetails";
+import Image from "next/image";
 const MoviePage = () => {
   // const router = useRouter();
   // const { id, title } = router.query;
@@ -79,13 +80,16 @@ const MoviePage = () => {
                 </button>
               </div>
             </div>
-            <div className="w-full right-0">
-              <div className="outline p-2">
-                <div className="outline">
-                  <img
-                    className="rounded-xl outline w-60 float-right"
+            <div className="w-full">
+              <div className=" px-16 mx-auto">
+                <div className="relative px-8">
+                  <Image
+                    className="rounded-xl border border-white w-60 float-right"
                     src={`https://image.tmdb.org/t/p/w500${details.poster_path}`}
                     alt={`${details.poster_path}`}
+                    width={500}
+                    height={500}
+                    loading="lazy"
                   />
                 </div>
               </div>

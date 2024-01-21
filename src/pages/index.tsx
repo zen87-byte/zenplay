@@ -43,7 +43,7 @@ const Home = ({ playingData, popularData, topRatedData, upcomingData }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const playingData = await fetchData("movie/now_playing");
   const popularData = await fetchData("movie/popular");
   const topRatedData = await fetchData("movie/top_rated");

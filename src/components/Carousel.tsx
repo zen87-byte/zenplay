@@ -10,8 +10,8 @@ import Autoplay from "embla-carousel-autoplay";
 const AutoCarousel = ({ data }) => {
   const items = data.results;
   const details = getDetails(901362);
-  // console.log("details", details);
-  // console.log("Carousel:", items);
+  console.log("details", details);
+  console.log("Carousel:", items);
 
   const getIndex = (index) => {
     console.log(index);
@@ -21,7 +21,7 @@ const AutoCarousel = ({ data }) => {
     <div className="w-full z-10">
       <div className="relative w-full">
         <div
-          className="relative max-h-4/5 bg-cover bg-no-repeat bg-center flex"
+          className="relative bg-cover bg-no-repeat bg-center flex"
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/original/${details.backdrop_path})`,
           }}
@@ -29,7 +29,7 @@ const AutoCarousel = ({ data }) => {
           <div className="w-full pt-48 px-16 z-20">
             <div className="block w-2/5 left-0 top-0">
               <div className="text-5xl font-bold">{details.title}</div>
-              {/* <div className="my-2 flex items-center gap-2">
+              <div className="my-2 flex items-center gap-2">
                 <FaStar fill="yellow" />
                 <p>{details.rating}</p>
                 <GoDotFill />
@@ -44,7 +44,7 @@ const AutoCarousel = ({ data }) => {
                     {item.name}
                   </button>
                 ))}
-              </div> */}
+              </div>
               <div className="my-4">{details.overview}</div>
               <div className="my-4 flex gap-4">
                 <button className="flex items-center gap-2 px-4 py-1 bg-white text-black rounded-md">
