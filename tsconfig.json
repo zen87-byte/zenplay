@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/components/ui/*" : ["components/ui/*"],
+      "@components/*" : ["components/*"],
+      "@utils/*" : ["utils/*"],
+      "@/lib/*": ["lib/*"],
+    },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,

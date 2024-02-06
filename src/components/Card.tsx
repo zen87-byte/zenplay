@@ -8,7 +8,7 @@ import {
   CarouselNext,
 } from "./ui/carousel";
 
-const Card = ({ data }) => {
+const Card = ({ data, category }) => {
   const res = data.results;
   return (
     <div className="group px-4">
@@ -30,7 +30,7 @@ const Card = ({ data }) => {
               index: number
             ) => (
               <CarouselItem className="basis-1/8" key={index}>
-                <Link href={`/movies/${item.id}?title=${item.title}`} passHref>
+                <Link href={`/movie/${category}/${item.id}?title=${item.title}`} passHref>
                   <HoverCard>
                     <HoverCardTrigger asChild>
                       <img

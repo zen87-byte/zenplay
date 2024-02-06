@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Searchbar from "../../pages/[search]/Searchbar";
 import { usePathname } from "next/navigation";
-import { getGenre } from "../../utils/getGenre";
-import { getQuerySearch } from "../../utils/getQuerySearch";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { signIn, signOut, useSession } from "next-auth/react";
+// import { useAuth } from "@components/auth-provider";
 
 const menuList: string[] = [
   "Home",
@@ -15,20 +15,19 @@ const menuList: string[] = [
   "Series",
 ];
 
-export function Navbar() {
+const Navbar: React.FC = () => {
   const pathname: string = usePathname();
-  const isHome: string = "/";
-  const [isLogin, setIsLogin] = useState<boolean>(false);
-  // const data = getGenre({ endpoint: "genre/tv/list" })
+  const isSearch: string = "/search";
+  console.log("pathname: ", pathname)
+  const { data: session } = useSession();
   return (
     <nav
       className={`${
-        pathname === isHome ? "absolute" : "absolute"
+        pathname === isSearch || pathname.includes('all')? "block" : "absolute"
       } block z-30 w-full flex justify-between items-center py-4 px-16`}
     >
       <div className="logo">
         <Link href="/">
-          {/* <Image src={logo} alt="" width={200} height={50} /> */}
           <h1 className="font-black text-4xl">ZENPLAY</h1>
         </Link>
       </div>
@@ -41,19 +40,19 @@ export function Navbar() {
       </div>
       <div className="flex gap-4 items-center">
         <Searchbar />
-        {isLogin ? (
+        {session ? (
           <>
             <button>
               <IoMdNotificationsOutline className="w-8 h-8" />
             </button>
-            <button>
+            <button onClick={() => signOut()}>
               <FaRegUserCircle className="w-8 h-8" />
             </button>
           </>
         ) : (
           <button
             className="bg-white text-black py-1 px-4 rounded-xl"
-            onClick={() => setIsLogin(true)}
+            onClick={() => signIn()}
           >
             Login
           </button>
@@ -61,6 +60,7 @@ export function Navbar() {
       </div>
     </nav>
   );
-}
+};
+
 
 export default Navbar;

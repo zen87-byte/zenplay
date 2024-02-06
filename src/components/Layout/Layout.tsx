@@ -1,10 +1,17 @@
+// Layout.jsx
+
 import Head from "next/head";
 import Navbar from "../Navbar/Navbar";
 import React, { Suspense } from "react";
-import { ThemeProvider } from "../theme-provider";
+import { ThemeProvider } from "../../context/ThemeProvider";
 import Loading from "../Loading/Loading";
+import Footer from "@components/footer/Footer";
 
-export default function Layout({ children }) {
+export default function Layout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <>
       <Head>
@@ -15,18 +22,24 @@ export default function Layout({ children }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="dark"
-        disableTransitionOnChange
-      >
-        <Suspense fallback={<Loading />}>
-          <div className="m-auto">
-            <Navbar />
-            <main>{children}</main>
-          </div>
-        </Suspense>
-      </ThemeProvider>
+      {/* <AuthProvider> */}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          disableTransitionOnChange
+        >
+          <Suspense fallback={<Loading />}>
+            <div className="min-h-screen">
+              <Navbar />
+              <main>{children}</main>
+              <div className="bottom-0">
+
+              <Footer />
+              </div>
+            </div>
+          </Suspense>
+        </ThemeProvider>
+      {/* </AuthProvider> */}
     </>
   );
 }

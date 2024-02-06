@@ -2,9 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { getIdFromUrl } from "./getId";
 
-export const getImages = async () => {
+export const getImages = (id: number) => {
     const [data, setData] = useState<string>("");
-    const id = getIdFromUrl();
     useEffect(() => {
       const fetchData = async () => {
         axios
@@ -22,7 +21,7 @@ export const getImages = async () => {
           });
       };
       fetchData();
-    }, [id]);
+    }, []);
   
     return data;
   };

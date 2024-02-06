@@ -5,23 +5,19 @@ import { useParams, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import LoadingSuspense from "../../components/Loading/Loading";
 import { Collection } from "../../components/Collection";
+import { fetchQuerySearch } from "@utils/fetch";
 
-export default function Page({
-  searchParams,
-}: {
-  searchParams: {
-    query: string;
-  };
-}) {
-  const params = useSearchParams();
-  const [data, setData] = useState();
-  const query = params.get("query");
-  console.log(query);
-  getQuerySearch(query).then((res) => setData(res));
-  console.log(data);
+export default function Page({ data, query }) {
+  const res = data.results;
   if (data) {
-    return <Collection data={data} />;
-  } else{
-    return <LoadingSuspense/>
+    return <Collection data={res} />;
+  } else {
+    return <LoadingSuspense />;
   }
+}
+
+export async function getServerSideProps(context) {
+  const { query } = context;
+  const data = await fetchQuerySearch(query);
+  return { props: { data, query } };
 }

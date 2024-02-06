@@ -7,15 +7,16 @@ import {
   useRef,
   useState,
 } from "react";
-import { getReviews } from "../../utils/getReviews";
 import { RxAvatar } from "react-icons/rx";
 import router from "next/router";
 import { AiFillLike } from "react-icons/ai";
 import { FaReply } from "react-icons/fa";
+import LoadingSuspense from "@components/Loading/Loading";
+import { fetchReviews } from "@utils/fetch";
 
 const Comment = (props) => {
-  const comments = getReviews(props.id);
-  const commentSum = Object.keys(comments).length;
+  const [comments, setComments] = useState([])
+  const commentSum = comments.length
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const handleFocus = () => {
@@ -39,6 +40,13 @@ const Comment = (props) => {
 
   const currentDateRef = useRef(new Date());
   const [currentDate, setCurrentDate] = useState(0);
+  useEffect(() =>{
+    const getReviews = async () =>{
+      const res = await fetchReviews(props.id)
+      setComments(await res.results)
+    }
+    getReviews()
+  }, [props.id])
   useEffect(() => {
     const intervalId = setInterval(() => {
       currentDateRef.current = new Date();
@@ -49,13 +57,14 @@ const Comment = (props) => {
       clearInterval(intervalId);
     };
   }, [currentDateRef.current.getSeconds()]);
-  console.log('anjay')
+  console.log(comments)
   console.log(currentDateRef.current);
   const getGapDate = (created_at: string) => {
     const arrDate = created_at.split("T");
     const yearModified = arrDate[0];
     const timeModified = arrDate[1].split(".")[0];
   };
+  
   return (
     <>
       <div className="w-full m-auto p-8">

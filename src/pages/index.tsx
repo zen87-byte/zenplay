@@ -1,53 +1,64 @@
 import React from "react";
 import Card from "../components/Card";
 import Layout from "../components/Layout/Layout";
-import { fetchData } from "../utils/fetch";
-import MainCarousel from "../components/Carousel";
+import { fetchCategory } from "../utils/fetch";
 import Link from "next/link";
-import Carousel from "../components/Carousel";
+import { useSession } from "next-auth/react";
+import Hero from "../components/Hero/Hero";
 
-const Home = ({ playingData, popularData, topRatedData, upcomingData }) => {
+export default function Home({
+  playingData,
+  popularData,
+  topRatedData,
+  upcomingData,
+}) {
+  const { data: session } = useSession();
   return (
-    <Layout>
-      <Carousel data={playingData}></Carousel>
-      <div className="px-12 my-4">
-        <div>
-          <div className="my-2 px-8 flex justify-between">
-            <h1 className="font-semibold">Popular</h1>
-            <p className="text-xs">
-              <Link href="movies/popular">View All &gt;</Link>
-            </p>
+    <>
+      {/* {session ? ( */}
+      <Layout>
+        <Hero data={playingData}></Hero>
+        <div className="px-12 my-4">
+          <div>
+            <div className="my-2 px-8 flex justify-between">
+              <h1 className="font-semibold">Popular</h1>
+              <p className="text-xs">
+                <Link href="movie/popular/all">See All &gt;</Link>
+              </p>
+            </div>
+            <Card data={popularData} category="popular" />
           </div>
-          <Card data={popularData} />
-        </div>
-        <div>
-          <div className="my-2 px-8 flex justify-between">
-            <h1 className="font-semibold">Top Rated</h1>
-            <p className="text-xs">
-              <Link href="movies/top-rated">View All &gt;</Link>
-            </p>
+          <div>
+            <div className="my-2 px-8 flex justify-between">
+              <h1 className="font-semibold">Top Rated</h1>
+              <p className="text-xs">
+                <Link href="movie/top_rated/all">See All &gt;</Link>
+              </p>
+            </div>
+            <Card data={topRatedData} category="top-rated" />
           </div>
-          <Card data={topRatedData} />
-        </div>
-        <div>
-          <div className="my-2 px-8 flex justify-between">
-            <h1 className="font-semibold">Coming Soon</h1>
-            <p className="text-xs">
-              <Link href="movies/coming-soon">View All &gt;</Link>
-            </p>
+          <div>
+            <div className="my-2 px-8 flex justify-between">
+              <h1 className="font-semibold">Coming Soon</h1>
+              <p className="text-xs">
+                <Link href="movie/upcoming/all">See All &gt;</Link>
+              </p>
+            </div>
+            <Card data={upcomingData} category="coming-soon" />
           </div>
-          <Card data={upcomingData} />
         </div>
-      </div>
-    </Layout>
+      </Layout>
+      {/* ) : (
+        <div>logout</div>
+      )} */}
+    </>
   );
-};
+}
 
-export async function getStaticProps() {
-  const playingData = await fetchData("movie/now_playing");
-  const popularData = await fetchData("movie/popular");
-  const topRatedData = await fetchData("movie/top_rated");
-  const upcomingData = await fetchData("movie/upcoming");
+export async function getServerSideProps() {
+  const playingData = await fetchCategory("movie/now_playing");
+  const popularData = await fetchCategory("movie/popular");
+  const topRatedData = await fetchCategory("movie/top_rated");
+  const upcomingData = await fetchCategory("movie/upcoming");
   return { props: { playingData, popularData, topRatedData, upcomingData } };
 }
-export default Home;

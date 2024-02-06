@@ -4,6 +4,7 @@ import {
   ChangeEvent,
   FormEvent,
   KeyboardEventHandler,
+  useCallback,
   useRef,
   useState,
 } from "react";
@@ -20,7 +21,7 @@ const Searchbar = () => {
   const handleInputChange = (term: string) => {
     inputRef.current = term;
   };
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const params = new URLSearchParams(searchParams);
     if (inputRef.current) {
@@ -29,7 +30,7 @@ const Searchbar = () => {
     } else {
       params.delete("query");
     }
-  };
+  }, []);
   // const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
   //   if (event.key === 'Enter') {
   //     event.preventDefault();
@@ -75,9 +76,9 @@ const Searchbar = () => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
             />
           </svg>
