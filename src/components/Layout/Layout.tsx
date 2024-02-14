@@ -29,11 +29,10 @@ export default function Layout({
           disableTransitionOnChange
         >
           <Suspense fallback={<Loading />}>
-            <div className="min-h-screen">
+            <div className="relative min-h-screen flex flex-col">
               <Navbar />
-              <main>{children}</main>
-              <div className="bottom-0">
-
+              <main className="flex-grow ">{children}</main>
+              <div>
               <Footer />
               </div>
             </div>

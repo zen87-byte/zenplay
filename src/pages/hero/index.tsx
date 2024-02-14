@@ -1,4 +1,4 @@
-import Hero from "@components/Hero";
+import Hero from "@components/Hero/Hero";
 import { fetchCategory } from "@utils/fetch";
 
 const HeroSection = ({ data }) => {

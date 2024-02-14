@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 // import { useAuth } from "@components/auth-provider";
 
 const menuList: string[] = [
@@ -16,14 +17,14 @@ const menuList: string[] = [
 ];
 
 const Navbar: React.FC = () => {
-  const pathname: string = usePathname();
-  const isSearch: string = "/search";
+  const pathname: string = useRouter().asPath;
+  const isHome: string = "/";
   console.log("pathname: ", pathname)
   const { data: session } = useSession();
   return (
     <nav
       className={`${
-        pathname === isSearch || pathname.includes('all')? "block" : "absolute"
+        pathname === isHome || pathname.includes('title')? "absolute" : "block"
       } block z-30 w-full flex justify-between items-center py-4 px-16`}
     >
       <div className="logo">

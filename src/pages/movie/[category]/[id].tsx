@@ -1,13 +1,8 @@
 import Layout from "@components/Layout/Layout";
 import React from "react";
 import LoadingSuspense from "@components/Loading/Loading";
-import { FaRegPlayCircle } from "react-icons/fa";
-import { FaStar, FaPlus } from "react-icons/fa6";
-import { GoDotFill } from "react-icons/go";
 import Comment from "@components/Comment/Comment";
-import { getIdFromUrl } from "@utils/getId";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
 import { fetchDetails } from "@utils/fetch";
 import Overview from "@components/Hero/Overview";
 import Background from "@components/Hero/Background";

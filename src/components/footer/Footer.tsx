@@ -28,7 +28,7 @@ const Footer = () => {
           <div className="absolute z-10 w-1/3 w-full h-full left-0 bottom-0 bg-gradient-to-t from-black to-[#030712]" />
           <div className="flex justify-between">
             {footerInfo.map((list, index) => (
-              <div className="z-40">
+              <div className="z-40" key={index}>
                 <h1 className="font-bold">{list.title}</h1>
                 <div>
                   <button className="opacity-75">{list.list1}</button>
