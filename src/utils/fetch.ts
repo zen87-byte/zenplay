@@ -1,14 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { getIdFromUrl } from "./getId";
-import { genreType } from "./getGenre";
 
 export interface detailsType{
   id: number;
   title: string;
   backdrop_path: string;
   poster_path: string;
-  genres: genreType[];
   overview: string;
   release_date: string;
   rating: number
@@ -47,9 +44,9 @@ export async function fetchReviews(id: number) {
   return res.json();
 }
 
-export async function fetchQuerySearch(endpoint: string) {
+export async function fetchQuerySearch(endpoint: string, page: number) {
   const res = await fetch(
-    `https://api.themoviedb.org/3/search/multi?query=${endpoint}`,
+    `https://api.themoviedb.org/3/search/movie?query=${endpoint}&page=${page}`,
     fetchOptions
   );
   return res.json();

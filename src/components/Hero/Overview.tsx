@@ -5,8 +5,8 @@ import ActionButton from "./ActionButton";
 const Overview = ({ data }) => {
   return (
     <>
-      <div className="">
-        <div className="w-full text-4xl font-bold">
+      <div className="text-xs sm:text-sm md:text-base lg:text-lg">
+        <div className="w-full text-xl md:text-4xl font-bold">
           <h1>{data.title}</h1>
         </div>
         <div>
@@ -17,7 +17,7 @@ const Overview = ({ data }) => {
             <p>{data.release_date.slice(0, 4)}</p>
           </div>
         </div>
-        <div className="flex gap-4 my-2">
+        <div className="flex gap-2 md:gap-4 my-2">
           {data.genres.map((item, index: number) => (
             <button
               key={index}

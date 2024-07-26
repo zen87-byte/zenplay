@@ -15,7 +15,7 @@ export default function Slide({ items, currentId, event,  ...props }) {
                 > */}
                   <button onClick={() =>event(index)}>
                     <img
-                      className={`rounded-md w-48 ${
+                      className={`rounded-md w-24 md:w-24 lg:w-48 ${
                         currentId === index
                           ? "transition ease-in-out duration-1000 outline scale-110 "
                           : "brightness-50 border border-white"

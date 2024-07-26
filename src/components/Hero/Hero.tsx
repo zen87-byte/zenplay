@@ -69,8 +69,8 @@ const Hero = ({ data }) => {
           <div>
             <Background imageSrc={details.backdrop_path} />
           </div>
-          <div className="w-full relative pt-48 px-16">
-            <div className="w-2/5">
+          <div className="w-full relative pt-48 px-4 md:px-8 lg:px-16">
+            <div className="w-4/5 md:w-2/5">
               <Overview data={details} />
             </div>
             <div className="w-full my-8">

@@ -23,21 +23,24 @@ export default function Layout({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <AuthProvider> */}
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          disableTransitionOnChange
-        >
-          <Suspense fallback={<Loading />}>
-            <div className="relative min-h-screen flex flex-col">
-              <Navbar />
-              <main className="flex-grow ">{children}</main>
-              <div>
-              <Footer />
-              </div>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        disableTransitionOnChange
+      >
+        <Suspense fallback={<Loading />}>
+          <div className="overflow-hidden relative w-full">
+            <Navbar />
+            <main className="w-full flex-grow relative">
+              {children}
+            </main>
+            <div className="self-end">
+              
+            <Footer />
             </div>
-          </Suspense>
-        </ThemeProvider>
+          </div>
+        </Suspense>
+      </ThemeProvider>
       {/* </AuthProvider> */}
     </>
   );

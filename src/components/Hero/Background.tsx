@@ -10,7 +10,6 @@ export default function Background({ imageSrc }: { imageSrc: string }) {
           objectFit="cover"
           objectPosition="top"
           layout="fill"
-          loading="lazy"
           alt=""
           className="-z-50"
         />

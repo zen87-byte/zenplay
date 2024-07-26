@@ -26,7 +26,7 @@ const Searchbar = () => {
     const params = new URLSearchParams(searchParams);
     if (inputRef.current) {
       params.set("query", inputRef.current);
-      router.push(`/search?query=${inputRef.current}`);
+      router.push(`/search?query=${inputRef.current}&page=1`);
     } else {
       params.delete("query");
     }

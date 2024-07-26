@@ -25,21 +25,21 @@ const Navbar: React.FC = () => {
     <nav
       className={`${
         pathname === isHome || pathname.includes('title')? "absolute" : "block"
-      } block z-30 w-full flex justify-between items-center py-4 px-16`}
+      }  left-0 z-30 w-full md:flex justify-between items-center py-4 px-16`}
     >
       <div className="logo">
         <Link href="/">
-          <h1 className="font-black text-4xl">ZENPLAY</h1>
+          <h1 className="text-center font-black text-4xl">ZENPLAY</h1>
         </Link>
       </div>
       <div>
-        <ul className="flex justify-between items-center gap-4">
+        <ul className="hidden lg:flex justify-between items-center gap-4">
           {menuList.map((item: string, index: number) => (
             <button key={index}>{item}</button>
           ))}
         </ul>
       </div>
-      <div className="flex gap-4 items-center">
+      <div className="hidden md:flex gap-4 items-center">
         <Searchbar />
         {session ? (
           <>
